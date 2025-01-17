@@ -23,7 +23,7 @@ The **Interactive Online Radio** system allows users to listen to live radio str
 1. Clone the repository:
    ```bash
    git clone https://github.com/kingzykesh/Online-Radio-System.git
-   cd dlcf-radio
+   cd Online-Radio-System
    ```
 
 2. Open the `index.html` file in your browser to run the system locally.
