@@ -1,0 +1,21 @@
+{
+    "short_name": "DLCFRadioApp",
+    "name": "Online Radio Streaming",
+    "icons": [
+      {
+        "src": "broad.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "broad.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#4A90E2"
+  }
+  

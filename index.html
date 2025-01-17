@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DLCF ONLINE RADIO</title>
+  <link rel="shortcut icon" href="fav.png" type="image/x-icon">
+
+  <!--META-->
+  <meta name="description" content="Listen to live radio streaming. Enjoy an interactive and SpiritFilled experience!">
+  <meta name="keywords" content="live radio, online radio, music streaming, interactive radio, radio station">
+  <meta name="author" content="DLCF Anchor University Media">
+  <meta property="og:image" content="broad.png"> 
+  <meta property="og:url" content="dlcfradio.ezirimkingdom.com.ng"> 
+  <meta property="og:type" content="website">
+  <meta name="twitter:image" content="broad.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#4A90E2">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Interactive Radio">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white min-h-screen flex items-center justify-center">
+  <div class="bg-white text-gray-800 rounded-lg shadow-lg p-6 w-80">
+    <h1 class="text-2xl font-bold text-center mb-4">DLCF Live Radio 🎙️</h1>
+
+    <div class="relative bg-gradient-to-r from-blue-500 to-green-500 p-4 rounded-lg">
+      <img src="broad.png" alt="Radio Logo" class="rounded-lg shadow-lg mb-4 mx-auto">
+
+      <p class="text-lg text-center font-semibold">Streaming Now!</p>
+
+      <audio id="radio" src="https://stream.zeno.fm/wekru6b78bztv" class="hidden"></audio>
+
+      <div class="flex justify-center gap-4 mt-4">
+        <button id="playBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
+          ▶ Play
+        </button>
+        <button id="pauseBtn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg">
+          ⏸ Pause
+        </button>
+      </div>
+
+      <div class="mt-6">
+        <label for="volume" class="block text-center font-medium mb-2">Volume Control</label>
+        <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5" class="w-full appearance-none bg-gray-300 rounded-lg overflow-hidden h-2">
+      </div>
+    </div>
+
+    <div class="mt-6 text-center">
+      <p class="text-sm">Saintly Scholars!</p>
+    </div>
+
+    
+    <div class="text-center mt-6">
+      <button id="installBtn" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg">
+        Install Radio App 
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const radio = document.getElementById('radio');
+    const playBtn = document.getElementById('playBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const volume = document.getElementById('volume');
+
+    playBtn.addEventListener('click', () => {
+      radio.play();
+    });
+
+    pauseBtn.addEventListener('click', () => {
+      radio.pause();
+    });
+
+    volume.addEventListener('input', (event) => {
+      radio.volume = event.target.value;
+    });
+
+    let deferredPrompt;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+
+      const installButton = document.getElementById('installBtn');
+      installButton.addEventListener('click', () => {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the install prompt');
+          } else {
+            console.log('User dismissed the install prompt');
+          }
+          deferredPrompt = null;
+        });
+      });
+    });
+  </script>
+</body>
+</html>
